@@ -1,0 +1,12 @@
+---
+
+az_instance_state: present 
+playbook_dir: ./ 
+location: "East US"
+VM_number: 2
+hypervisor: az 
+remote_user:
+  az: azureuser 
+
+
+...

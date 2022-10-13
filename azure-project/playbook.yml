@@ -1,0 +1,56 @@
+---
+
+############################
+# terraform playbook       #
+############################
+
+- hosts: localhost
+  connection: local
+  gather_facts: no
+
+  vars_files:
+    - ansible/group_vars/all/vault.yml 
+    - ansible/group_vars/all/vars.yml
+
+  tasks:
+
+    - name: install terraform and provision azure VMs
+      include_role: 
+        name: terra-provision
+
+
+#     ################################
+#     # pause                        #
+#     ################################
+#     - name: Wait 300 seconds for port 22 to become open and contains the string "OpenSSH"
+#       wait_for:
+#         port: 22
+#         host: '{{ vm_ip_web }}'
+#         search_regex: OpenSSH
+#         delay: 10
+#       vars:
+#         ansible_connection: local
+#       when: vm_ip_web is defined
+
+# ###############################################
+# # playbook for configuration of the webserver #
+# ###############################################
+# - hosts: dynamic_web
+
+#   tasks:
+#     - name: create a website
+#       include_role: 
+#         name: webserver
+
+
+# ###############################################
+# # playbook for configuration of the dbserver  #
+# ###############################################
+# - hosts: dynamic_db
+
+#   tasks:
+#     - name: create a database
+#       include_role: 
+#         name: databaseserver
+
+...
